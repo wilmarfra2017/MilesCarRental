@@ -1,0 +1,6 @@
+{
+  "MilesCarRental.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "D:\\Repo\\MilesCarRental\\MilesCarRental.Api",
+  "MilesCarRental.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "D:\\Repo\\MilesCarRental\\MilesCarRental.Application",
+  "MilesCarRental.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "D:\\Repo\\MilesCarRental\\MilesCarRental.Domain",
+  "MilesCarRental.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "D:\\Repo\\MilesCarRental\\MilesCarRental.Infrastructure"
+}

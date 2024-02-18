@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "UGVMaJP6PUjA9knb602tsl3wwQSEf1Qatd2EEU78EhIKD3TVnQf/dLdXrevUFDBHVpIs7rypMqGTQPfwNatwCA==",
+  "success": true,
+  "projectFilePath": "D:\\Repo\\MilesCarRental\\MilesCarRental.Application\\MilesCarRental.Application.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\wilmar.martinez\\.nuget\\packages\\fluentvalidation\\11.8.1\\fluentvalidation.11.8.1.nupkg.sha512",
+    "C:\\Users\\wilmar.martinez\\.nuget\\packages\\mediatr\\12.2.0\\mediatr.12.2.0.nupkg.sha512",
+    "C:\\Users\\wilmar.martinez\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
+    "C:\\Users\\wilmar.martinez\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
