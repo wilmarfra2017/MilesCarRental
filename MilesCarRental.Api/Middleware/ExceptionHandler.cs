@@ -3,23 +3,28 @@ using System.Net;
 
 namespace MilesCarRental.Api.Middleware
 {
+    /// <summary>
+    /// Define un middleware personalizado para manejar excepciones globalmente en la aplicación.    
+    /// </summary>      
     public class AppExceptionHandlerMiddleware
     {
         private readonly RequestDelegate _next;
         private readonly ILogger<AppExceptionHandlerMiddleware> _logger;
-
+        
         public AppExceptionHandlerMiddleware(RequestDelegate next, ILogger<AppExceptionHandlerMiddleware> logger)
         {
-            _next = next ?? throw new ArgumentNullException(nameof(next));
-            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            _next = next ?? throw new ArgumentNullException(nameof(next)); // 
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger)); 
         }
 
+        // Método invocado por el runtime de ASP.NET Core para procesar las solicitudes HTTP.
         public async Task InvokeAsync(HttpContext context)
         {
             EnsureValidContext(context);
             await HandleInvocationAsync(context);
         }
 
+        // Verifica que el contexto HTTP proporcionado no sea nulo.
         private static void EnsureValidContext(HttpContext context)
         {
             if (context == null)
@@ -28,6 +33,7 @@ namespace MilesCarRental.Api.Middleware
             }
         }
 
+        // Intenta ejecutar el próximo middleware en la pipeline y maneja cualquier excepción que ocurra.
         private async Task HandleInvocationAsync(HttpContext context)
         {
             try
@@ -44,6 +50,7 @@ namespace MilesCarRental.Api.Middleware
             }
         }
 
+        // Realiza el manejo de la excepción, registrando el error y preparando la respuesta HTTP.
         private void HandleException(Exception ex, HttpContext context, HttpStatusCode statusCode)
         {
             string loggingMessageTemplate = "An error occurred: {Error}";

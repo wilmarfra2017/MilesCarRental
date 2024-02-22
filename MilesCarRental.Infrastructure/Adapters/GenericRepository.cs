@@ -5,6 +5,11 @@ using MilesCarRental.Infrastructure.Ports;
 using System.Linq.Expressions;
 
 namespace MilesCarRental.Infrastructure.Adapters;
+
+/// <summary>
+/// Proporciona una implementación genérica del patrón de repositorio para entidades del dominio,
+/// permitiendo realizar operaciones CRUD básicas sobre una base de datos utilizando Entity Framework.
+/// </summary>
 public class GenericRepository<T> : IRepository<T> where T : DomainEntity
 {
 

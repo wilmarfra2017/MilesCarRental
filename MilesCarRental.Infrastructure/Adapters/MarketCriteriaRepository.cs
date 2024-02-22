@@ -4,6 +4,10 @@ using MilesCarRental.Infrastructure.DataSource;
 
 namespace MilesCarRental.Infrastructure.Adapters;
 
+/// <summary>
+/// Repositorio para acceder a los criterios de mercado dentro de la infraestructura de MilesCarRental.
+/// Provee funcionalidades para consultar los criterios de mercado basados en su identificador.
+/// </summary>
 [Repository]
 public class MarketCriteriaRepository : IMarketCriteriaRepository
 {
@@ -13,6 +17,7 @@ public class MarketCriteriaRepository : IMarketCriteriaRepository
         _context = context ?? throw new ArgumentNullException(nameof(context));
     }
 
+    // Obtiene los criterios de mercado por su identificador único de forma asíncrona.
     public async Task<string> GetCriteriaByIdAsync(Guid marketCriteriaId)
     {
         var marketCriteria = await _context.MarketCriterias

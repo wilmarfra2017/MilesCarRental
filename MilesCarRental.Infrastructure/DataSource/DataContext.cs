@@ -3,6 +3,10 @@ using MilesCarRental.Domain.Entities;
 
 namespace MilesCarRental.Infrastructure.DataSource
 {
+    /// <summary>
+    /// Define el contexto de la base de datos para la aplicación MilesCarRental, 
+    /// incluyendo los conjuntos de entidades que representan las tablas en la base de datos.
+    /// </summary>
     public class DataContext : DbContext
     {
         public DbSet<Vehicle> Vehicles { get; set; }
@@ -17,6 +21,8 @@ namespace MilesCarRental.Infrastructure.DataSource
         {
         }
 
+        // Configura el modelo de la base de datos aplicando las configuraciones de las entidades,
+        // incluyendo llaves primarias, restricciones, y propiedades de auditoría.
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             if (modelBuilder == null)

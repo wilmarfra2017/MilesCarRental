@@ -5,6 +5,10 @@ using MilesCarRental.Domain.Ports;
 
 namespace MilesCarRental.Application.Features.Vehicles.Queries.GetVehicles;
 
+/// <summary>
+/// Manejador de la consulta GetVehiclesQuery, responsable de implementar la lógica para obtener los vehículos disponibles
+/// basados en los criterios especificados en la consulta, como ubicaciones de recogida y entrega, fechas y criterios de mercado.
+/// </summary>
 public class GetVehiclesQueryHandler : IRequestHandler<GetVehiclesQuery, IEnumerable<VehicleDto>>
 {
     private readonly IMarketCriteriaService _marketCriteriaService;
@@ -16,6 +20,7 @@ public class GetVehiclesQueryHandler : IRequestHandler<GetVehiclesQuery, IEnumer
         _localityCollectedRepository = localityCollectedRepository;
     }
 
+    // Procesa la consulta GetVehiclesQuery, aplicando los criterios de búsqueda y filtrado para retornar los vehículos disponibles.
     public async Task<IEnumerable<VehicleDto>> Handle(GetVehiclesQuery request, CancellationToken cancellationToken)
     {
         var marketCriteria = await _marketCriteriaService.GetMarketCriteriaByIdAsync(request.marketId);

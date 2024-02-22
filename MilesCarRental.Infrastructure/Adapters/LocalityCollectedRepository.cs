@@ -5,6 +5,10 @@ using MilesCarRental.Infrastructure.DataSource;
 
 namespace MilesCarRental.Infrastructure.Adapters;
 
+/// <summary>
+/// Implementa el repositorio para operaciones relacionadas con localidades y vehículos disponibles,
+/// proporcionando métodos específicos para buscar vehículos disponibles y localidades basadas en criterios de búsqueda.
+/// </summary>
 [Repository]
 public class LocalityCollectedRepository : ILocalityCollectedRepository
 {
@@ -15,6 +19,7 @@ public class LocalityCollectedRepository : ILocalityCollectedRepository
         _context = context ?? throw new ArgumentNullException(nameof(context));             
     }
 
+    // Encuentra vehículos disponibles basándose en los identificadores de ubicación de recogida y entrega, y un rango de fechas.
     public async Task<IEnumerable<Vehicle>> FindAvailableVehiclesAsync(Guid pickupLocationId, Guid dropOffLocationId, DateTime startDate, DateTime endDate)
     {
         return await _context.Vehicles
@@ -28,7 +33,7 @@ public class LocalityCollectedRepository : ILocalityCollectedRepository
             .ToListAsync();
     }
 
-
+    // Busca localidades por ciudad o nombre del lugar basándose en una cadena de búsqueda.
     public async Task<IEnumerable<Location>> FindLocationsByCityOrPlaceNameAsync(string searchQuery)
     {
         return await _context.Locations

@@ -9,6 +9,10 @@ using System.Net.Http.Json;
 
 namespace MilesCarRental.Api.Tests
 {
+    /// <summary>
+    /// Clase de pruebas para el controlador de MilesCarRental, se enfoca en probar los endpoints de la API
+    /// asegurando que respondan correctamente bajo diversas condiciones.
+    /// </summary>
     public class MilesCarRentalControllerTests : IClassFixture<MilesCarRentalApiApp>
     {
         private readonly MilesCarRentalApiApp _factory;
@@ -18,6 +22,7 @@ namespace MilesCarRental.Api.Tests
             _factory = factory;
         }
 
+        // Prueba para verificar que la respuesta del endpoint GetVehicles es 200 OK con los parámetros adecuados.
         [Fact]
         public async Task GetVehicles_ReturnsVehiclesResponse200()
         {
@@ -39,7 +44,7 @@ namespace MilesCarRental.Api.Tests
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         }
 
-
+        // Prueba para verificar que la respuesta del endpoint GetVehicles devuelve una lista de vehículos.
         [Fact]
         public async Task GetVehicles_ReturnsVehiclesResponse()
         {
@@ -71,7 +76,7 @@ namespace MilesCarRental.Api.Tests
             Assert.NotEmpty(vehicles);
         }
 
-
+        // Prepara la base de datos in-memory para las pruebas, asegurando que los datos necesarios estén presentes.
         private async Task PrepareDatabaseAsync()
         {
             using var scope = _factory.Services.CreateScope();
@@ -86,6 +91,7 @@ namespace MilesCarRental.Api.Tests
             await VerifyInsertionAsync(dbContext, vehicle.Id, "3C021872-17F6-4267-A5D0-BC3F63D7CEC8");
         }
 
+        // Crea y añade un vehículo a la base de datos in-memory.
         private async Task<Vehicle> CreateAndAddVehicleAsync(DataContext dbContext, string brand, string model, string type, int year, decimal pricePerDay)
         {
             var vehicle = new Vehicle { Brand = brand, Model = model, Type = type, Year = year, PricePerDay = pricePerDay };
@@ -94,6 +100,7 @@ namespace MilesCarRental.Api.Tests
             return vehicle;
         }
 
+        // Crea y añade información de disponibilidad para un vehículo en la base de datos in-memory.
         private async Task CreateAndAddAvailabilityAsync(DataContext dbContext, Guid vehicleId, string locationId, string startDateStr, string endDateStr)
         {
             var availability = new Availability
@@ -108,6 +115,7 @@ namespace MilesCarRental.Api.Tests
             await dbContext.SaveChangesAsync();
         }
 
+        // Crea y añade criterios de mercado en la base de datos in-memory.
         private async Task CreateAndAddMarketCriteriaAsync(DataContext dbContext, string criteriaId, string criteria)
         {
             var marketCriteria = new MarketCriteria { Id = Guid.Parse(criteriaId), Criteria = criteria };
@@ -115,6 +123,7 @@ namespace MilesCarRental.Api.Tests
             await dbContext.SaveChangesAsync();
         }
 
+        // Verifica la inserción de vehículos y sus criterios de mercado en la base de datos in-memory.
         private async Task VerifyInsertionAsync(DataContext dbContext, Guid vehicleId, string criteriaId)
         {
             var insertedVehicle = await dbContext.Vehicles.FindAsync(vehicleId);

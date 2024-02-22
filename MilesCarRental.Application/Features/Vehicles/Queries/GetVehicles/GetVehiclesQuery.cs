@@ -11,4 +11,3 @@ public record GetVehiclesQuery(
     Guid marketId,
     string locationSearchQuery = ""
 ) : IRequest<IEnumerable<VehicleDto>>;
-

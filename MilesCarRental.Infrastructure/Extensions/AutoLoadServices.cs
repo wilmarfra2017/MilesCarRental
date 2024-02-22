@@ -7,8 +7,13 @@ using MilesCarRental.Infrastructure.Ports;
 
 namespace MilesCarRental.Infrastructure.Extensions;
 
+/// <summary>
+/// Clase de extensión para IServiceCollection que facilita la carga automática y el registro de servicios y repositorios
+/// mediante reflexión, simplificando la configuración de la inyección de dependencias.
+/// </summary>
 public static class AutoLoadServices
 {
+    // Extiende IServiceCollection para incluir la carga automática de servicios y repositorios basándose en atributos personalizados.
     public static IServiceCollection LoadServices(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddTransient(typeof(IRepository<>), typeof(GenericRepository<>));

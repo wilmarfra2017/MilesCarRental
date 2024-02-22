@@ -4,6 +4,12 @@ using MilesCarRental.Domain.Ports;
 
 namespace MilesCarRental.Domain.Services;
 
+/// <summary>
+/// Servicio de dominio que proporciona funcionalidades para manejar y aplicar criterios de mercado a los vehículos.
+/// Este servicio utiliza un repositorio de criterios de mercado para recuperar los criterios específicos
+/// y luego los aplica a los vehículos para determinar si cumplen con dichos criterios.
+/// </summary>
+
 [DomainService]
 public class MarketCriteriaService : IMarketCriteriaService
 {
@@ -16,6 +22,7 @@ public class MarketCriteriaService : IMarketCriteriaService
         _resourceManager = resourceManager;
     }
 
+    // Recupera los criterios de mercado basados en un identificador específico.
     public async Task<string> GetMarketCriteriaByIdAsync(Guid marketCriteriaId)
     {
         if (marketCriteriaId == Guid.Empty)
@@ -26,6 +33,7 @@ public class MarketCriteriaService : IMarketCriteriaService
         return await _marketCriteriaRepository.GetCriteriaByIdAsync(marketCriteriaId);
     }
 
+    // Aplica los criterios de mercado a un vehículo específico para determinar si cumple con los criterios.
     public bool ApplyMarketCriteria(Vehicle vehicle, string marketCriteria)
     {
         if (vehicle == null)
